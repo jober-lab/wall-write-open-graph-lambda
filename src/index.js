@@ -88,6 +88,8 @@ const getApiBaseUrlByHost = (host) => {
 };
 
 exports.handler = async (event, context, callback) => {
+  console.log('=== Wall Write Open Graph Lambda Started ===');
+  console.log('Deployment test - Version:', new Date().toISOString());
   console.log('event: ', event);
   console.log('context: ', context);
   console.log('callback: ', callback);
