@@ -26,30 +26,32 @@ This Lambda@Edge function intercepts requests to wall write documents and genera
 ### Prerequisites
 
 - AWS CLI configured
-- SAM CLI installed
 - Node.js 18.x
 
-### Deploy with SAM
+### Deploy with AWS CLI (Recommended)
 
 ```bash
 # Build and deploy
 ./deploy.sh
 
 # Or manually
-sam build
-sam deploy --guided  # First time only
-sam deploy           # Subsequent deployments
-```
-
-### Deploy with AWS CLI
-
-```bash
 cd src && zip -r ../function.zip . && cd ..
 aws lambda update-function-code \
   --function-name set-open-graph-to-wall-write-document-on-origin-response \
   --zip-file fileb://function.zip \
   --region us-east-1
 rm function.zip
+```
+
+### Deploy with SAM (Alternative)
+
+```bash
+# First time setup
+sam deploy --guided
+
+# Subsequent deployments
+sam build
+sam deploy
 ```
 
 ## Configuration
@@ -62,22 +64,12 @@ The function automatically detects the environment based on the CloudFront host 
 
 ## Development
 
-### Local Testing
-
-```bash
-# Build only
-sam build
-
-# Local API simulation (limited for Edge Lambda)
-sam local start-api
-```
-
 ### Code Structure
 
 ```
 src/
 ├── index.js          # Main Lambda function
-template.yaml         # SAM template
+template.yaml         # SAM template (optional)
 deploy.sh            # Deployment script
 package.json         # Node.js dependencies
 ```

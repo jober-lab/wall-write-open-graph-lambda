@@ -30,6 +30,19 @@ jobs:
           aws-region: us-east-1
           
       - name: Build and Deploy
+        env:
+          SAM_CLI_TELEMETRY: 0
         run: |
-          sam build
-          sam deploy --stack-name wall-write-open-graph-lambda --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset --region us-east-1 --capabilities CAPABILITY_IAM
+          # Package the function
+          cd src && zip -r ../function.zip . && cd ..
+          
+          # Deploy using AWS CLI (safer for existing function)
+          aws lambda update-function-code \
+            --function-name set-open-graph-to-wall-write-document-on-origin-response \
+            --zip-file fileb://function.zip \
+            --region us-east-1
+          
+          # Clean up
+          rm function.zip
+          
+          echo "Deployment completed successfully!"
