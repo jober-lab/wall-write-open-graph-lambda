@@ -32,4 +32,4 @@ jobs:
       - name: Build and Deploy
         run: |
           sam build
-          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --region us-east-1
+          sam deploy --stack-name wall-write-open-graph-lambda --no-confirm-changeset --no-fail-on-empty-changeset --region us-east-1 --capabilities CAPABILITY_IAM
