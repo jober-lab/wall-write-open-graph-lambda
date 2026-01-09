@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  OpenGraphFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: 'set-open-graph-to-wall-write-document-on-origin-response'
+      CodeUri: src/
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Timeout: 3
+      MemorySize: 128
+      Role: arn:aws:iam::476364780248:role/service-role/cloudfront-edge-role
+
+Outputs:
+  FunctionArn:
+    Value: !GetAtt OpenGraphFunction.Arn

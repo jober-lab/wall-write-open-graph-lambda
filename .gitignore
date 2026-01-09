@@ -1,0 +1,6 @@
+node_modules/
+.aws-sam/
+*.zip
+.DS_Store
+.env
+samconfig.toml

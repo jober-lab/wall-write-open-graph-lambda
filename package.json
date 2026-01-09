@@ -1,0 +1,13 @@
+{
+  "name": "open-graph-lambda",
+  "version": "1.0.0",
+  "description": "CloudFront Edge Lambda for Open Graph meta tags",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "sam deploy --guided",
+    "build": "sam build",
+    "local": "sam local start-api"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
