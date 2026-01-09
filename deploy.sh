@@ -5,6 +5,6 @@ echo "Building SAM application..."
 sam build
 
 echo "Deploying to AWS..."
-sam deploy --stack-name wall-write-open-graph-lambda --no-confirm-changeset --no-fail-on-empty-changeset --region us-east-1 --capabilities CAPABILITY_IAM
+sam deploy --stack-name wall-write-open-graph-lambda --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset --region us-east-1 --capabilities CAPABILITY_IAM
 
 echo "Deployment complete!"
